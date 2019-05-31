@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {font-family:'Helvetica Neue', Arial, sans-serif; color:#333; font-size:13px; line-height:17px;}
+      body .name,body .note {white-space:pre-wrap;}
+      body ul {list-style:disc; margin:0; padding:0;}
+      body li {margin:4px 0 4px 20px; padding:0;}
+      body>.name {font-size:16px; line-height:21px;}
+      body>.note {font-size:13px; line-height:17px;}
+      body>ul {margin-top:15px;}
+      body .name.done {text-decoration:line-through; color:#999;}
+      body .note {font-size:12px; color:#666;}
+    </style>
+  </head>
+  <body>
+    <span class="name">07-Debug</span><ul><li><span class="name">卡顿问题: 查看systrace</span><ul><li><span class="name">chrome中打开 <a class="contentLink" target="_blank" rel="noreferrer" href="chrome://tracing">chrome://tracing</a>,  把文件拖进去</span></li><li><span class="name">找对应的线程</span></li><li><span class="name">快捷键:</span><ul><li><span class="name">w: 放大</span></li><li><span class="name">s: 缩小</span></li><li><span class="name">a: 后退</span></li><li><span class="name">d: 前进</span></li><li><span class="name">方向键: 四处遍历</span></li><li><span class="name">f: 直接放大当前</span></li><li><span class="name">m: 高亮当前</span></li><li><span class="name">v: 高亮整个 vsync</span></li><li><span class="name">0(数字): 恢复到最初状态</span></li></ul></li><li><span class="name">卡顿看 UIThread , 每个"F"都是一帧, 绿色表示不卡, 其它颜色表示卡.</span></li><li><span class="name">systrace 加点</span><ul><li><span class="name">代码中加 Trace.traceBegin(msg);</span></li><li><span class="name">Trace.traceEnd();</span></li><li><span class="name">必须成对出现, 且在同一个线程.</span></li><li><span class="name">一般在 release 中生效.</span></li></ul></li><li><span class="name">如何抓 systrace?</span><ul><li><span class="name">一般用 AS 的monitor.bat , 选线程, 抓对应的 systrace.</span></li></ul></li></ul></li><li><span class="name">内存泄露问题</span><ul><li><span class="name">问题复现时, 用 adb shell dumpsys meminfo com.oppo.camera -d</span></li><li><span class="name">分析输出, 看 Total 是否一直增大, 如果是, 肯定是内存泄漏.</span></li><li><span class="name">再看 Activities, 如果有异常, 比如camera应用是单activity应用, 如果这个值大于2, 一般就是activity泄露. </span></li><li><span class="name">activity泄露的原因是有长周期的对象持有了指定的activity的context. </span></li><li><span class="name">抓 hprof 文件. 手机要 remount. 然后输入:</span><ul><li><span class="name">adb shell am dumpheap com.oppo.camera /data/1.hprof</span></li></ul></li><li><span class="name">如果用 MAT 分析 hprof文件, 则需要把文件转换下, 在PC上执行:</span><ul><li><span class="name">hprof_conv 1.hprof 1-1.hprof</span></li></ul></li><li><span class="name">安装MAT的方法: eclipse - help - install new software - Search "MAT"</span></li><li><span class="name">分析方法:</span><ul><li><span class="name"></span></li></ul></li></ul></li><li><span class="name">ANR问题</span></li><li><span class="name">闪退问题</span></li></ul>
+  </body>
+</html>
