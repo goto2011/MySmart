@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {font-family:'Helvetica Neue', Arial, sans-serif; color:#333; font-size:13px; line-height:17px;}
+      body .name,body .note {white-space:pre-wrap;}
+      body ul {list-style:disc; margin:0; padding:0;}
+      body li {margin:4px 0 4px 20px; padding:0;}
+      body>.name {font-size:16px; line-height:21px;}
+      body>.note {font-size:13px; line-height:17px;}
+      body>ul {margin-top:15px;}
+      body .name.done {text-decoration:line-through; color:#999;}
+      body .note {font-size:12px; color:#666;}
+    </style>
+  </head>
+  <body>
+    <span class="name">47-Excel</span><ul><li><span class="name">得到元素出现的次数: =COUNTIF(Sheet2!A:A ; A1)</span></li><li><span class="name">去左边空格: =RIGHT(A1,LEN(A1)-1)</span></li><li><span class="name">去右边空格: =LEFT(A1,LEN(A1)-1)</span></li><li><span class="name">左右空格一起去掉: =TRIM(A1)</span></li><li><span class="name">不管左右中间，只要有空格就去掉。: =SUBSTITUTE(A1,"",)</span></li><li><span class="name">拼接两个单元格，中间加分隔符。: =$B2&amp;"，”&amp;C2 &nbsp; // 连接符为 &amp;</span></li><li><span class="name">如果是数字: =IF(ISNUMBER(C2); " "; $B2&amp;"，"&amp;C2)</span></li><li><span class="name">字符串比较: =IF(EXACT((RIGHT(C1,1),"年”), C1&amp;C2, "")</span></li><li><span class="name">如果不为空, 则等于本单元格内容，如果不为空，则等于上个一单元格内容</span><ul><li><span class="name">假如数据在A列，B列是空白可用的，那么:</span><ul><li><span class="name">B1=A1</span></li><li><span class="name">B2=IF(A2=""; B1; A2)下拉到底。</span></li></ul></li><li><span class="name">那么B列就成为你需要的A列的内容了。</span></li></ul></li><li><span class="name">判空</span><ul><li><span class="name">要清晰几个Excel里面的概念：空白、空值、零值、空字符串（""）</span></li><li><span class="name">其中，空白包含空值和空字符串，而空值在运算时，“当”零值处理</span></li><li><span class="name">如果是严格意义上的“空值”，就应该用 =if(isblank(a1); 0; 1)</span></li><li><span class="name">如果是“空白”，即包含空字符串的话，用 =if(A1=“"; 0; 1) .</span></li><li><span class="name">一个例子：</span></li><li><span class="name">=if(isblank(Sheet2!D1); ""; Sheet2!B1&amp;Sheet2!C1&amp;“，”&amp;Sheet2!D1)</span></li></ul></li><li><span class="name">删除所有的空白格</span><ul><li><span class="name">选择操作区域，单击菜单并依次选择“编辑→定位→定位条件→空值”; Excel将选择该区域中的所有空白单元格。</span></li><li><span class="name">单击菜单“编辑→删除”，弹出“删除”对话框，选择“下方单元格上移”，单击“确定”。</span></li></ul></li><li><span class="name">逻辑关系</span><ul><li><span class="name">并： AND</span><ul><li><span class="name">AND(A1=1,A1=100)</span></li></ul></li><li><span class="name">或： OR</span><ul><li><span class="name">OR(A1=1,A1=100)</span></li><li><span class="name">=IF(OR(ISNUMBER(C2); ISBLANK(C2)); " "; $B2&amp;"，"&amp;C2)</span></li></ul></li><li><span class="name">异：NOT</span></li><li><span class="name">异或：Xor</span></li></ul></li><li><span class="name">字符串截取，判断，添加</span><ul><li><span class="name">=IF(EXACT(RIGHT(Sheet3!A1; 1);"1"); Sheet3!A1&amp;"年”; Sheet3!A1)</span></li></ul></li></ul>
+  </body>
+</html>
