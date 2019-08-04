@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {font-family:'Helvetica Neue', Arial, sans-serif; color:#333; font-size:13px; line-height:17px;}
+      body .name,body .note {white-space:pre-wrap;}
+      body ul {list-style:disc; margin:0; padding:0;}
+      body li {margin:4px 0 4px 20px; padding:0;}
+      body>.name {font-size:16px; line-height:21px;}
+      body>.note {font-size:13px; line-height:17px;}
+      body>ul {margin-top:15px;}
+      body .name.done {text-decoration:line-through; color:#999;}
+      body .note {font-size:12px; color:#666;}
+    </style>
+  </head>
+  <body>
+    <span class="name">12-Service</span><ul><li><span class="name">Service 启动后会常驻内存, 不顺定义的app的退出而退出. 而且如果挂了, 系统会自动重新启动.</span></li><li><span class="name">Service生命周期, 分两种</span><ul><li><span class="name">第一种, 用 startService() 启动的service.</span><ul><li><span class="name">onCreate: 第一次启动时被调</span></li><li><span class="name">onStartCommand / onStart: 每次启动都会被调</span></li><li><span class="name">onDestory</span></li></ul></li><li><span class="name">第二种, 用 bindService() 启动的service.</span><ul><li><span class="name">onCreate: 第一次启动时被调</span></li><li><span class="name">onBind</span></li><li><span class="name">onUnbind</span></li><li><span class="name">onDestory</span></li></ul></li><li><span class="name">onStartCommand 和 onStart的关系: 后者不建议使用. 如果使用, 则相当于重写了 onStartCommand, 而且返回值是 START_STICKY.</span></li><li><span class="name"><b>onStartCommand</b>的返回值</span><ul><li><span class="name">START_STICKY: 系统在调用完onStartCommand()方法后，如果当前服务被终止了，系统会使该服务保持在启动状态，不过它不会保留之前传递的Intent对象。但是由于它保持启动状态，随后系统会尝试重新创建service，但之前的Intent对象没有被保存。在这个情况下，如果期间没有任何启动命令被传递到Service，那么参数Intent将为null。因此使用START_STICKY作为返回值，适用于不执行命令的媒体播放器（或类似的服务），它只是无限期的运行着并等待工作的到来.</span></li><li><span class="name">START_NOT_STICKY: 系统在调用完onStartCommand方法后，如果当前服务被终止了并且在此期间没有任何启动命令被传递到Service，那么系统将是使当前服务退出启动状态，并且除非重新调用Context.startService(Intent)，否则不会重新被创建（即不会重新调用onCreate方法）。因为当前服务退出了启动状态，所以除非在此期间启动命令被传递到Service，否则也不会调用。这是最安全的选项，用来避免在不需要的时候运行你的服务。</span></li><li><span class="name">START_REDELIVER_INTENT: 如果在执行完onStartCommand后，服务被异常kill掉，系统会自动重启该服务，并将Intent的值传入。并且在在该服务调用stopSelf方法之前，能够一直保留intent对象数据。这适用于那些应该立即恢复正在执行的工作的服务，如下载文件。</span></li><li><span class="name">START_STICKY_COMPATIBILITY: START_STICKY的兼容版本，但不保证服务被终止后一定能重启。被异常kill后, 服务虽然被重建，但没有重启.</span></li></ul></li></ul></li></ul>
+  </body>
+</html>
