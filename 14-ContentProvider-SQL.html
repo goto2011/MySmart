@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {font-family:'Helvetica Neue', Arial, sans-serif; color:#333; font-size:13px; line-height:17px;}
+      body .name,body .note {white-space:pre-wrap;}
+      body ul {list-style:disc; margin:0; padding:0;}
+      body li {margin:4px 0 4px 20px; padding:0;}
+      body>.name {font-size:16px; line-height:21px;}
+      body>.note {font-size:13px; line-height:17px;}
+      body>ul {margin-top:15px;}
+      body .name.done {text-decoration:line-through; color:#999;}
+      body .note {font-size:12px; color:#666;}
+    </style>
+  </head>
+  <body>
+    <span class="name">14-ContentProvider-SQL</span><ul><li><span class="name">即内容提供器. 不同应用之间进行数据交换的标准API。包括, 应用程序之间, 以及系统向应用程序提供数据时使用. </span></li><li><span class="name">系统提供的ContentProvider包括：</span><ul><li><span class="name">Browser：存储如浏览器的信息。</span></li><li><span class="name">CallLog：存储通话记录等信息。</span></li><li><span class="name">Contacts：存储联系人等信息。</span></li><li><span class="name">MediaStore：存储媒体文件的信息。</span></li><li><span class="name">Settings：存储设备的设置和首选项信息。</span></li></ul></li><li><span class="name">某个应用程序通过ContentProvider暴露了自己的数据操作接口，那么不管该应用程序是否启动，其他应用程序都可以通过这个接口来操作它的内部数据。</span></li><li><span class="name">被访问者实现 <b>ContentProvider</b>.</span></li><li><span class="name">访问者实现 <b>ContentResolver</b>. 通过与ContentProvider同名的方法请求执行，被执行的就是ContentProvider中的同名方法。</span></li><li><span class="name">Uri</span><ul><li><span class="name">Uri是一种资源访问方式。对于ContentProvider而言，Uri 是固定格式的：&lt;srandard_prefix&gt;://&lt;authority&gt;/&lt;data_path&gt;/&lt;id&gt;</span></li><li><span class="name">&lt;srandard_prefix&gt;: ContentProvider的srandard_prefix始终是 content:// .</span></li><li><span class="name">&lt;authority&gt;: ContentProvider的名称。</span></li><li><span class="name">&lt;data_path&gt;: 请求的数据类型。</span></li><li><span class="name">&lt;id&gt;: 指定请求的特定数据。</span></li></ul></li><li><span class="name">ContentProvider 需要在 AndroidManifest.xml 中进行配置。格式如下: </span><ul><li><span class="name">&lt;provider android:name=".MyContentProviderDemo" android:authorities="com.content.MyUsers"&gt;</span></li><li><span class="name">&lt;/provider&gt;</span></li><li><span class="name">android:authorities 为授权码, 是字符串. 访问者只有在申明了该授权码后才可以访问.</span></li><li><span class="name">一般有如下权限:</span><ul><li><span class="name">android:grantUriPermssions:临时许可标志。</span></li><li><span class="name">android:permission:Provider读写权限。</span></li><li><span class="name">android:readPermission:Provider的读权限。</span></li><li><span class="name">android:writePermission:Provider的写权限。</span></li><li><span class="name">android:enabled:标记允许系统启动Provider。</span></li><li><span class="name">android:exported:标记允许其他应用程序使用这个Provider。</span></li><li><span class="name">android:multiProcess:标记允许系统启动Provider相同的进程中调用客户端。</span></li></ul></li></ul></li><li><span class="name">ContentProvider必须要实现的几个方法：</span><ul><li><span class="name">onCreate()：初始化提供者。</span></li><li><span class="name">query(Uri, String[], String, String[], String)：查询数据，返回一个数据Cursor对象。</span></li><li><span class="name">insert(Uri, ContentValues)：插入一条数据。</span></li><li><span class="name">update(Uri, ContentValues, String, String[])：根据条件更新数据。</span></li><li><span class="name">delete(Uri, String, String[])：根据条件删除数据。</span></li><li><span class="name">getType(Uri) 返回MIME类型对应内容的URI。</span></li><li><span class="name">除了onCreate()和getType()方法外，其他的均为CRUD操作，这些方法中，Uri参数为与ContentProvider匹配的请求Uri，剩下的参数可以参见SQLite的CRUD操作基本一致.</span></li></ul></li></ul>
+  </body>
+</html>
