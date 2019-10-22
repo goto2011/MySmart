@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {font-family:'Helvetica Neue', Arial, sans-serif; color:#333; font-size:13px; line-height:17px;}
+      body .name,body .note {white-space:pre-wrap;}
+      body ul {list-style:disc; margin:0; padding:0;}
+      body li {margin:4px 0 4px 20px; padding:0;}
+      body>.name {font-size:16px; line-height:21px;}
+      body>.note {font-size:13px; line-height:17px;}
+      body>ul {margin-top:15px;}
+      body .name.done {text-decoration:line-through; color:#999;}
+      body .note {font-size:12px; color:#666;}
+    </style>
+  </head>
+  <body>
+    <span class="name">10-显示系统</span><ul><li><span class="name">分辨率相关概念</span><ul><li><span class="name">坐标原点:</span><ul><li><span class="name">Android 定义屏幕的左上角为坐标原点(0, 0), 向右为x轴, 向下为y轴, 向上为z轴. 都是正数.</span></li></ul></li><li><span class="name">dp(dip):&nbsp;device independent pixels(设备独立像素). 不同设备有不同的显示效果,这个和设备硬件有关，一般我们为了支持WVGA、HVGA和QVGA 推荐使用这个，不依赖像素。</span></li><li><span class="name">px: pixels(像素). 不同设备显示效果相同.</span></li><li><span class="name">pt: point，是一个标准的长度单位，1pt＝1/72英寸，用于印刷业.</span></li><li><span class="name">sp: scaled pixels(放大像素). 主要用于字体显示best for textsize。size和dp相同.</span></li></ul></li><li><span class="name">刷新率相关概念</span><ul><li><span class="name">FPS: 每秒传输帧数, frames per second. 即屏幕刷新率.</span><ul><li><span class="name">单位是Hz, 赫兹. </span></li><li><span class="name">通常, 要避免动作不流畅的最低FPS是 30. 最佳体验是 60或以上.</span></li></ul></li></ul></li><li><span class="name"><b>流量 = 分辨率 * 刷新率</b></span><ul><li><span class="name">比特率: 是指每秒传递的比特数(bit), 单位为 bps.</span></li><li><span class="name">码流: data rate, 指视频文件在单位时间内使用的数据流量, 也叫码率.  码流的单位 KB/s, 等于 比特率 / 8.</span></li></ul></li><li><span class="name">著名的16ms指标的来历</span><ul><li><span class="name">60 fps是手机app性能的衡量标准, 这个标准的来历是: 人眼与大脑之前的协作无法感知超过60 FPS的画面, 所以超过60 FPS 没有意义.</span></li><li><span class="name">对于60 fps, 1帧即 1000 / 60 = 16ms. </span></li><li><span class="name">Android系统每隔16ms, 会发一次 VSync 信息来通知重绘界面. </span></li><li><span class="name">当一个操作超过 16 ms, 系统在得到 VSync 信息时就无法进行绘制, </span></li></ul></li><li><span class="name">Refresh Rate: 屏幕在1秒内刷新屏幕的次数, 这取决于硬件的固定参数, 比如 60Hz.</span></li><li><span class="name">Frame Rate: 代表GPU在1秒内绘制操作的帧数, 比如30 FPS.</span></li><li><span class="name">GPU 获取图形数据进行渲染, 然后硬件负责把渲染的内容呈现到屏幕上, 他们两者不停的进行协作.</span></li><li><span class="name">如果发生帧率和刷新频率不一致的情况, 就会出现Tearing 现象, 画面上下两部分显示内容断裂, 来自不同的两帧数据发生重叠. </span></li><li><span class="name">双缓冲机制</span><ul><li><span class="name">多数系统都会使用双缓冲机制. 即一个buffer用于显示当前帧, 另一个buffer 用于缓存下一帧的数据. 其过程是:</span></li><li><span class="name">1. 屏幕显示缓冲A中的第0帧; </span></li><li><span class="name">2. CPU和GPU在缓冲B中构建第1帧; 构建好后, 并不会马上绘制, 而是必须等待系统的VSync信号.</span></li><li><span class="name">3. 系统发出VSync信号, 屏幕向缓冲B请求第1帧的数据, 如成功, 则绘制它;</span></li><li><span class="name">4. 此时, 缓冲A中的数据被清除, CPU和GPU开始构建第2帧.</span></li><li><span class="name">在第三步, 如果此时缓冲B的第1帧数据没有准备好, 屏幕只好继续显示缓冲A中的第0帧, 这种情况就叫丢帧, 也叫"Jank".</span></li></ul></li><li><span class="name">Canvas</span><ul><li><span class="name">普通view渲染时不用 OpenGL, 用 skia, 不用硬件加速, 依赖CPU性能.</span></li><li><span class="name">SurfaceView/TextureView 用 OpenGL, 用硬件加速.</span></li></ul></li><li><span class="name">SurfaceView 有专门的线程来画图, 不用等view刷图. 一般用于游戏, 高画质图片, 相机预览等场景.</span></li><li><span class="name">Canvas 底层用 skia库实现. </span></li><li><span class="name">Skia 是2D图形引擎, 又叫 SGL. </span></li><li><span class="name">Android系统用skia 来画普通的图形元素, 包括:</span><ul><li><span class="name">image</span></li><li><span class="name">shap</span></li><li><span class="name">color</span></li><li><span class="name">pre-defined 动画.</span></li></ul></li><li><span class="name">OpenGL是 3D图形引擎.</span></li></ul>
+  </body>
+</html>
