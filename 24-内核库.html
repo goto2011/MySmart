@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {font-family:'Helvetica Neue', Arial, sans-serif; color:#333; font-size:13px; line-height:17px;}
+      body .name,body .note {white-space:pre-wrap;}
+      body ul {list-style:disc; margin:0; padding:0;}
+      body li {margin:4px 0 4px 20px; padding:0;}
+      body>.name {font-size:16px; line-height:21px;}
+      body>.note {font-size:13px; line-height:17px;}
+      body>ul {margin-top:15px;}
+      body .name.done {text-decoration:line-through; color:#999;}
+      body .note {font-size:12px; color:#666;}
+    </style>
+  </head>
+  <body>
+    <span class="name"><span class="innerContentContainer">24-内核库</span></span><ul><li><span class="name"><span class="innerContentContainer">Bionic</span></span><ul><li><span class="name"><span class="innerContentContainer">google开发的c语言库，采用BSD许可形式开源，目的是替代以GPL开源的 glibc.</span></span></li><li><span class="name"><span class="innerContentContainer"><b>google做这个的目的是为了避免开源感染扩散到HAL层。</b></span></span></li><li><span class="name"><span class="innerContentContainer">特点是:</span></span><ul><li><span class="name"><span class="innerContentContainer">大小仅200KB，是glibc的一半，且比glibc快。</span></span></li><li><span class="name"><span class="innerContentContainer">实现了一个更小、更快的pthread；</span></span></li><li><span class="name"><span class="innerContentContainer">提供了一些android需要的函数，如getprop、LOGI；</span></span></li><li><span class="name"><span class="innerContentContainer">不完全支持POSIX标准，如C++ exceptions、wide chars等；</span></span></li><li><span class="name"><span class="innerContentContainer">不提供libthread_db和libm的实现。</span></span></li></ul></li><li><span class="name"><span class="innerContentContainer">新增的特性:</span></span><ul><li><span class="name"><span class="innerContentContainer">wp、sp是智能指针；</span></span></li><li><span class="name"><span class="innerContentContainer">string8.h 是定义单字节字符串的类；并提供从 string16 转换的接口。</span></span></li><li><span class="name"><span class="innerContentContainer">keyedvector.h，定义hash向量表模板，用key（字符串）随机访问数据。</span></span></li></ul></li></ul></li></ul>
+  </body>
+</html>
