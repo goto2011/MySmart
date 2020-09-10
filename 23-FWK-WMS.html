@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {font-family:'Helvetica Neue', Arial, sans-serif; color:#333; font-size:13px; line-height:17px;}
+      body .name,body .note {white-space:pre-wrap;}
+      body ul {list-style:disc; margin:0; padding:0;}
+      body li {margin:4px 0 4px 20px; padding:0;}
+      body>.name {font-size:16px; line-height:21px;}
+      body>.note {font-size:13px; line-height:17px;}
+      body>ul {margin-top:15px;}
+      body .name.done {text-decoration:line-through; color:#999;}
+      body .note {font-size:12px; color:#666;}
+    </style>
+  </head>
+  <body>
+    <span class="name"><span class="innerContentContainer"><b>23-FWK-WMS</b></span></span><ul><li><span class="name"><span class="innerContentContainer">frameworks/base/services/java/com/android/server/wm/WindowManagerService.java</span></span></li><li><span class="name"><span class="innerContentContainer">引入Window的目的是为了实现Activity和其上的视图View的解耦. 解耦之后, Activity只负责生命周期管理. </span></span></li><li><span class="name"><span class="innerContentContainer">Activity, PhoneWindow, DecorView, titleBar, contentView 之间关系的示意图  <span class="contentTag" title="Filter @iChart">@<span class="contentTagText">iChart</span><span class="contentTagNub"></span></span> </span></span></li><li><span class="name"><span class="innerContentContainer">WMS功能</span></span><ul><li><span class="name"><span class="innerContentContainer">1. 窗口的添加和删除</span></span></li><li><span class="name"><span class="innerContentContainer">2. 窗口的显示和隐藏控制</span></span></li><li><span class="name"><span class="innerContentContainer">3. Z-order顺序管理</span></span></li><li><span class="name"><span class="innerContentContainer">4. 焦点窗口和焦点应用的管理</span></span></li><li><span class="name"><span class="innerContentContainer">5. 输入法窗口管理和墙纸窗口管理</span></span></li><li><span class="name"><span class="innerContentContainer">6. 窗口动画管理</span></span></li><li><span class="name"><span class="innerContentContainer">7. 系统消息收集和分发</span></span></li></ul></li><li><span class="name"><span class="innerContentContainer">创建窗口的过程  <span class="contentTag" title="Filter #面试题">#<span class="contentTagText">面试题</span><span class="contentTagNub"></span></span> </span></span><ul><li><span class="name"><span class="innerContentContainer">创建Activity的过程中, 会调用 <b>addWindow</b>() 来请求WMS添加窗口.</span></span></li><li><span class="name"><span class="innerContentContainer">Window的具体实现类是PhoneWindow. 在Activity初始化执行 attach 的时候，会创建一个PhoneWindow对象。然后给Window对象中的mWindowManager变量赋值。</span></span></li><li><span class="name"><span class="innerContentContainer">PhoneWindow作为装载根视图DecorView的容器，Activity通过setContentView实际上是调用PhoneWindow来创建DecorView。</span></span></li><li><span class="name"><span class="innerContentContainer">首先调用installDecor() 为Window类添加窗口装饰，其实就是标题栏.</span></span></li><li><span class="name"><span class="innerContentContainer">然后, 布局文件所定义的界面, 被包含在在窗口内容中。</span></span></li><li><span class="name"><span class="innerContentContainer">把创建的窗口通知WmS，让WmS把窗口显示在屏幕上。当Activity准备好后会通知Ams，然后AMS经过一系列调用到 Activity的makeVisible()，该方法将真正完成把窗口添加进Wms中。</span></span></li></ul></li><li><span class="name"><span class="innerContentContainer">管理窗口 <span class="contentTag" title="Filter #面试题">#<span class="contentTagText">面试题</span><span class="contentTagNub"></span></span> </span></span></li><li><span class="name"><span class="innerContentContainer">处理系统按键和触摸消息</span></span></li><li><span class="name"><span class="innerContentContainer">管理窗口动画</span></span></li></ul>
+  </body>
+</html>
